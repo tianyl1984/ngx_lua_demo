@@ -1,1 +1,1 @@
-ngx.say("Hello")
+ngx.say("hello in file")
