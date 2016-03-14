@@ -37,7 +37,8 @@ if not res then
 	print_opt("connect", res, err, errno, sqlstate)
 	return close_db(db)
 else
-	res, err, errno, sqlstate = db:query("SET character_set_client = gbk")
+	--res, err, errno, sqlstate = db:query("SET character_set_client = gbk")
+	res, err, errno, sqlstate = db:query("SET NAMES 'utf8'")
 	if not res then
 		print_opt(opt, res, err, errno, sqlstate)
 		return close_db(db)
@@ -67,14 +68,14 @@ end
 
 if opt == "insert" then
 	local name = ngx.req.get_uri_args()["name"] or ""
-	local sql = "insert into student(name,age) values('"..name.."',20)"
+	local sql = "insert into student(name,age) values("..ngx.quote_sql_str(name)..",20)"
 	res, err, errno, sqlstate = db:query(sql)
 	if not res then
 		print_opt(opt, res, err, errno, sqlstate)
 		return close_db(db)
 	end
 	ngx.say(opt, " success!! ")
-	ngx.say("</br>","insert rows : ", res.affected_rows, " , id : ", res.insert_id)
+	ngx.say("</br>","insert rows : ", res.affected_rows, " , id : ", res.insert_id,ngx.quote_sql_str(name))
 end
 
 if opt == "update" then
