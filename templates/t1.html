@@ -1,0 +1,23 @@
+<html>
+	{(header.html)}
+	<body>
+		t1.html 模板使用
+		<hr>
+		姓名：{{ name }}<hr>
+		年龄：{{ age }}<hr>
+		
+		<ul>
+			{% for index,sc in ipairs(scores) do %}
+			<li>{{index}}-{{sc.name}}-{{sc.score}}</li>
+			{% end %}
+		</ul><hr>
+		
+		{% if male then %}
+		性别：男
+		{% else %}
+		性别：女
+		{% end %}<hr>
+		
+		
+	</body>
+</html>
