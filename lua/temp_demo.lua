@@ -1,3 +1,7 @@
+
+--resty.template模块需要单独安装
+--https://github.com/bungle/lua-resty-template
+
 local template = require("resty.template")
 template.caching(false)
 
