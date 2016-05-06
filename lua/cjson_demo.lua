@@ -1,3 +1,4 @@
+--cjson模块使用
 local cjson = require("cjson")
 local obj = {
 	name = "zhangsan",

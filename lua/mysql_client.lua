@@ -21,7 +21,7 @@ if not db then
 	ngx.say("new mysql error : ", err)
 end
 
---ÉèÖÃ³¬Ê±
+--è®¾ç½®è¶…æ—¶
 db:set_timeout(1000)
 
 local props = {

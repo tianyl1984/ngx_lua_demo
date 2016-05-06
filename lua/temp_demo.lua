@@ -2,10 +2,10 @@ local template = require("resty.template")
 template.caching(false)
 
 local stu = {
-	name = "张三",
+	name = "寮犱笁",
 	age = 20,
 	male = true,
-	scores = {{name="数学",score=95},{name="语文",score=45},{name="英语",score=45.8}}
+	scores = {{name="鏁板",score=95},{name="璇枃",score=45},{name="鑻辫",score=45.8}}
 }
 
 template.render("t1.html",stu)

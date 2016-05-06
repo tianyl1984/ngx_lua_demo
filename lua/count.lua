@@ -1,4 +1,4 @@
---Ä£¿é
+--æ¨¡å—
 local count = 0;
 local function addCount()
 	count = count + 1

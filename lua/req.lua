@@ -1,4 +1,4 @@
---ngx±äÁ¿
+--ngxå˜é‡
 ngx.say("------ ngx var ------<br/>");
 local var = ngx.var
 ngx.say("ngx.var.a : ", var.a, "<br/>")
@@ -50,11 +50,11 @@ ngx.say("ngx.req.raw_header : ",ngx.req.raw_header(),"<br/>")
 ngx.say("ngx.req.get_body_data : ",ngx.req.get_body_data(),"<br/>")
 ngx.say("<hr>")
 
---ÓĞÎÊÌâ
+--æœ‰é—®é¢˜
 ngx.say("------ ngx response ------<br/>");
 ngx.header.a = "abc"
 ngx.header.b = {"b1","b2"}
-ngx.print("ÖĞÎÄ×Ö·û")
+ngx.print("ä¸­æ–‡å­—ç¬¦")
 ngx.say("<hr>")
 
 ngx.say("------ ngx shared data ------<br/>");
