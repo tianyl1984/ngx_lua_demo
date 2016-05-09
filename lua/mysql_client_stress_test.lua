@@ -30,7 +30,7 @@ end
 db:set_timeout(1000)
 
 local props = {
-	host = "223.202.64.198",
+	host = "10.2.2.3",
 	port = 3306,
 	database = "bd",
 	user = "root",
