@@ -5,7 +5,15 @@ local function close_db(db)
 	if not db then
 		return
 	end
-	db:close()
+	--db:close()
+	--连接池设计
+	local pool_max_idle_time = 100000; --毫秒
+	local pool_size = 2100;
+	local ok,err = db:set_keepalive(pool_max_idle_time,pool_size);
+	if not ok then
+		ngx.say("set keepalive error : ",err);
+		db:close();
+	end
 end
 
 local function print_opt(opt, res, err, errno, sqlstate)
@@ -22,11 +30,12 @@ end
 db:set_timeout(1000)
 
 local props = {
-	host = "10.2.2.3",
+	host = "223.202.64.198",
 	port = 3306,
 	database = "bd",
 	user = "root",
-	password = "jksfdsdff2"
+	password = "jksfdsdff2",
+	pool = "mysqlpool"
 }
 
 local res, err, errno, sqlstate = db:connect(props)
