@@ -64,3 +64,5 @@ end
 for i, row in ipairs(res) do
 	ngx.say("id : ", row.id, " name : ", row.name, " examNum : ", row.examNum, "<br/>")
 end
+
+close_db(db);
