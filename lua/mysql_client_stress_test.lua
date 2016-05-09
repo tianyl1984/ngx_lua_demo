@@ -8,7 +8,7 @@ local function close_db(db)
 	--db:close()
 	--连接池设计
 	local pool_max_idle_time = 100000; --毫秒
-	local pool_size = 2100;
+	local pool_size = 100;
 	local ok,err = db:set_keepalive(pool_max_idle_time,pool_size);
 	if not ok then
 		ngx.say("set keepalive error : ",err);
@@ -17,17 +17,19 @@ local function close_db(db)
 end
 
 local function print_opt(opt, res, err, errno, sqlstate)
-	ngx.say(opt, " error : ", err, " , errno : ", errno, " , sqlstate : ", sqlstate)
+	--ngx.exit(500);
+	ngx.status = 500;
+	ngx.say(opt, " error : ", err, " , errno : ", errno, " , sqlstate : ", sqlstate);
 end
 
 local mysql = require("resty.mysql")
 local db, err = mysql:new()
 if not db then
-	ngx.say("new mysql error : ", err)
+	ngx.say("new mysql error : ", err);
 end
 
 --设置超时
-db:set_timeout(1000)
+db:set_timeout(2000)
 
 local props = {
 	host = "10.2.2.3",
@@ -38,9 +40,9 @@ local props = {
 	pool = "mysqlpool"
 }
 
-local res, err, errno, sqlstate = db:connect(props)
+local res, err, errno, sqlstate = db:connect(props);
 if not res then
-	print_opt("connect", res, err, errno, sqlstate)
+	print_opt("connect", res, err, errno, sqlstate);
 	return close_db(db)
 else
 	--res, err, errno, sqlstate = db:query("SET character_set_client = gbk")
