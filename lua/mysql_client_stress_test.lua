@@ -7,6 +7,13 @@ local function to_json( obj )
 	return cjson.encode(obj)
 end
 
+local function print_err_exit(opt, res, err, errno, sqlstate)
+	--ngx.exit(500)
+	ngx.status = 500
+	ngx.say(opt," , res : ", res , " , error : ", err, " , errno : ", errno, " , sqlstate : ", sqlstate)
+	ngx.exit(ngx.OK)
+end
+
 local function close_db(db)
 	if not db then
 		return
@@ -58,13 +65,6 @@ local function rollback_transaction( db )
 		print_err_exit("rollback", res, err, errno, sqlstate)
 		return
 	end
-end
-
-local function print_err_exit(opt, res, err, errno, sqlstate)
-	--ngx.exit(500)
-	ngx.status = 500
-	ngx.say(opt," , res : ", res , " , error : ", err, " , errno : ", errno, " , sqlstate : ", sqlstate)
-	ngx.exit(ngx.OK)
 end
 
 local function getDB()
